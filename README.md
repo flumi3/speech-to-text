@@ -1,5 +1,9 @@
 # Speech To Text
 
+Converts the audio of a file to text with use of Azure Cognitive Service.
+
+<img src=https://user-images.githubusercontent.com/52599177/130236381-51f8305e-6962-4c6a-9d2f-798868f4e61b.png width="325">
+
 ## Requirements
 - Python 3
 - Instance of Azure Speech Service
