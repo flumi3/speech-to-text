@@ -7,9 +7,9 @@ Converts the audio of a file to text with use of Azure Cognitive Service.
 ## Requirements
 - Python 3
 - Instance of Azure Speech Service
-- Default audio format:  
+- Recommended audio format:  
     - type: WAV
-    - bitrate: 16-bit
+    - precision: 16-bit
     - sample rate: 8kHz or 16kHz
     - channel: Single channel (mono)
 
@@ -26,5 +26,5 @@ pip3 install -r requirements.txt
 
 ### Run transcription
 ```shell
-python3 transcription.py
+python3 src/transcription.py
 ```
