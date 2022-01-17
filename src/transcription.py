@@ -1,16 +1,22 @@
 import os
 import sys
 import time
+import wave
 import azure.cognitiveservices.speech as speechsdk
 from dotenv import load_dotenv
 
 load_dotenv()
 
+# colors for colored output
+BLUE = '\033[94m'
+RED = '\033[91m'
+ENDC = '\033[0m'
+
 SUBSCRIPTION_KEY = os.getenv("SUBSCRIPTION_KEY")
 REGION = os.getenv("REGION")
 INPUT_FILE_PATH = os.getenv("INPUT_FILE_PATH")
 OUTPUT_FILE_PATH = os.getenv("OUTPUT_FILE_PATH")
-LANGUAGE = os.getenv("TRANSCRIPTION_LANGUAGE")
+LANGUAGE = os.getenv("LANGUAGE")
 
 assert SUBSCRIPTION_KEY
 assert REGION
@@ -26,7 +32,7 @@ SPEECH_CONFIG = speechsdk.SpeechConfig(
 
 
 def continuous_recognition_from_file():
-    print("=== Speech to text ===")
+    print(BLUE + "=== Speech to text ===" + ENDC)
     print(f"input file: {INPUT_FILE_PATH}")
     print(f"output file: {OUTPUT_FILE_PATH}")
     print(f"recognition language: {LANGUAGE}\n")
@@ -45,6 +51,14 @@ def continuous_recognition_from_file():
         speech_recognizer.stop_continuous_recognition()
         nonlocal done
         done = True
+
+        if evt.result.reason == speechsdk.ResultReason.Canceled:
+            cancellation_details = evt.result.cancellation_details
+            if cancellation_details.reason == speechsdk.CancellationReason.Error:
+                print()
+                print(RED + "Speech Recognition canceled due to error" + ENDC)
+                print(f"Error code: {cancellation_details.error_code}")
+                print(f"Error details: {cancellation_details.error_details}")
 
     all_results = list()
 
