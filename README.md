@@ -8,10 +8,10 @@ Converts the audio of a file to text with use of Azure Cognitive Service.
 - Python 3
 - Instance of Azure Speech Service
 - Recommended audio format:  
-    - type: WAV
+    - type: WAV (required)
     - precision: 16-bit
     - sample rate: 8kHz or 16kHz
-    - channel: Single channel (mono)
+    - channel: mono
 
 ## Usage
 
