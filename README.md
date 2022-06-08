@@ -1,6 +1,6 @@
 # Speech To Text
 
-Converts the audio of a file to text with use of Azure Cognitive Service.
+This simple python project lets you convert the audio of a file into searchable text by using cloud computing resources from Azure Cognitive Services.
 
 <img src=https://user-images.githubusercontent.com/52599177/130236381-51f8305e-6962-4c6a-9d2f-798868f4e61b.png width="325">
 
@@ -15,47 +15,46 @@ Converts the audio of a file to text with use of Azure Cognitive Service.
 
 ## Getting started
 
-### Azure Cognitive Services
+### Setup the Azure Speech service
 
-This script uses the Azure Speech service which provides an API to transcribe audible speech into readable, searchable text. Therefore, it is
-necessary to create an instance of that if you don't have one. Then, in order to give the script access to your Speech service, you have to pass your
-subscription key and the region of the instance.
-
-Infos on how to create a free instance of Azure Speech (5 audio hours per month) and how to get the subscription key and region can be found
-[here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/overview).
+1. Create free [Azure Subscripition](https://azure.microsoft.com/de-de/free/cognitive-services/)
+2. Create free instance of [Speech service](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) (5 audio hours per month) 
 
 ### Prepare the audio
 
-The default audio format for the recognition to work is WAV (16 kHz or 8 kHz, 16-bit, and mono PCM). You can easily convert your audio
-[here](https://online-audio-converter.com/).
+The default audio format for the recognition to work is WAV (16 kHz or 8 kHz, 16-bit, and mono PCM). You can convert your audio
+with this [Online Audio Converter](https://online-audio-converter.com/).
 
-### Install the dependencies
+### Setup the environment
 
-Create a virutal environment for installing the dependencies:
-```shell
-python3 -m venv venv
-```
+1. Create virutal environment for installing the dependencies
+    ```shell
+    python3 -m venv venv
+    ```
 
-Activate the virtual environment:
-```shell
-source venv/bin/activate  # On Linux
-./venv/Scripts/activate  # On Windows
-```
+2. Activate virtual environment
+    ```shell
+    # Linux
+    source venv/bin/activate
 
-Install the dependencies:
-```shell
-pip install -r requirements.txt
-```
+    # Windows
+    ./venv/Scripts/activate
+    ```
+
+3. Install dependencies
+    ```shell
+    pip install -r requirements.txt
+    ```
 
 ### Provide your configuration
 
-As mentioned above, for the script to work, you have to provide the subscription key and the region of your Azure Speech instance. Also you have to
-specify the path of your audio file and the path of your output file (which has to be a .txt).
+1. Get the API key and the region of your Speech service resource
+    - <img src=https://user-images.githubusercontent.com/52599177/172724399-13edeae6-7a34-4327-b9b5-2acb538b83c7.png width=240>
+3. Enter key and location into *./src/env_sample.txt*
+4. Enter path and language of your audio input file into *./src/env_sample.txt*
+5. Rename the file to *.env*
 
-1. Add all required values into the env_sample.txt file
-2. Rename the file to .env
-
-### Run transcription
+### Run the transcription
 ```shell
 python3 src/transcription.py
 ```
