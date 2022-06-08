@@ -116,8 +116,12 @@ def print_to_file(text_results) -> None:
         print(f"Printed text to: {OUTPUT_FILE_PATH}")
 
 
-if __name__ == "__main__":
+def main():
     check_config()
     speech_recognizer = setup_speech_recognizer()
     text_results = continuous_recognition_from_file(speech_recognizer)
     print_to_file(text_results)
+
+    
+if __name__ == "__main__":
+    main()
