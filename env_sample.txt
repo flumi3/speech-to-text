@@ -1,7 +1,7 @@
 # 1. Add necessary information
 # 2. Rename file to .env
 
-SUBSCRIPTION_KEY = "<paste-your-subscription-key>"
+API_KEY = "<paste-your-subscription-key>"
 REGION = "<paste-your-region>"
 
 INPUT_FILE_PATH = "<paste-your-input-file-path>"

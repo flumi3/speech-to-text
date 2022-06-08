@@ -48,13 +48,13 @@ with this [Online Audio Converter](https://online-audio-converter.com/).
 
 ### Provide your configuration
 
-1. Get the API key and the region of your Speech service resource
+1. Get API key and region of your Speech service resource
     - <img src=https://user-images.githubusercontent.com/52599177/172724399-13edeae6-7a34-4327-b9b5-2acb538b83c7.png width=240>
-3. Enter key and location into *./src/env_sample.txt*
-4. Enter path and language of your audio input file into *./src/env_sample.txt*
+3. Enter API key and location into *env_sample.txt*
+4. Enter input path, output path and language of your audio file into *env_sample.txt*
 5. Rename the file to *.env*
 
 ### Run the transcription
 ```shell
-python3 src/transcription.py
+python3 transcription.py
 ```

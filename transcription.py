@@ -13,7 +13,7 @@ RED = '\033[91m'
 GREEN = '\033[92m'
 ENDC = '\033[0m'
 
-SUBSCRIPTION_KEY = os.getenv("SUBSCRIPTION_KEY")
+API_KEY = os.getenv("API_KEY")
 REGION = os.getenv("REGION")
 INPUT_FILE_PATH = os.getenv("INPUT_FILE_PATH")
 OUTPUT_FILE_PATH = os.getenv("OUTPUT_FILE_PATH")
@@ -23,7 +23,7 @@ LANGUAGE = os.getenv("LANGUAGE")
 def check_config() -> None:
     print("Checking configuration ...")
     try:
-        assert SUBSCRIPTION_KEY
+        assert API_KEY
         assert REGION
         assert INPUT_FILE_PATH
         assert OUTPUT_FILE_PATH
@@ -32,9 +32,8 @@ def check_config() -> None:
         print(RED + f"Missing configuration parameter. Please check env file" + ENDC)
         sys.exit(1)
 
-    # check whether the user wants to write to an existing file before starting
-    # with speech to text because we only have five free audiohours per month and
-    # dont want to waste them
+    # check whether the user wants to write to an existing file before starting with speech to text
+    # because we only have five free audio hours per month and dont want to waste them
     if os.path.isfile(OUTPUT_FILE_PATH):
         print(RED + f"Specified output file already exists: {OUTPUT_FILE_PATH}" + ENDC)
         sys.exit(1)
@@ -44,7 +43,7 @@ def setup_speech_recognizer() -> speechsdk.SpeechRecognizer:
     print("Setting up speech recognition ...")
     try:
         speech_config = speechsdk.SpeechConfig(
-            subscription=SUBSCRIPTION_KEY,
+            subscription=API_KEY,
             region=REGION,
             speech_recognition_language=LANGUAGE
         )
@@ -58,7 +57,7 @@ def setup_speech_recognizer() -> speechsdk.SpeechRecognizer:
         return speech_recognizer
 
 
-def continuous_recognition_from_file(speech_recognizer: speechsdk.SpeechRecognizer) -> list:
+def recognize(speech_recognizer: speechsdk.SpeechRecognizer) -> list:
     print("Starting speech recognition ...\n")
     done = False
     all_results = list()
@@ -105,21 +104,22 @@ def continuous_recognition_from_file(speech_recognizer: speechsdk.SpeechRecogniz
     return all_results
 
 
-def print_to_file(text_results) -> None:
+def print_to_file(text_results: "list[str]") -> None:
     try:
         with open(OUTPUT_FILE_PATH, "w", encoding="utf-8") as output:
             for result in text_results:
                 output.write(result + "\n")
     except Exception as e:
-        print(f"Could not write text to file: {e}")
+        print(RED + f"Could not write text into {OUTPUT_FILE_PATH}" + ENDC)
+        print(e)
     else:
-        print(f"Printed text to: {OUTPUT_FILE_PATH}")
+        print(f"Printed text to {OUTPUT_FILE_PATH}")
 
 
 def main():
     check_config()
     speech_recognizer = setup_speech_recognizer()
-    text_results = continuous_recognition_from_file(speech_recognizer)
+    text_results = recognize(speech_recognizer)
     print_to_file(text_results)
 
     
