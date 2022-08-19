@@ -1,14 +1,14 @@
 # 1. Add necessary information
 # 2. Rename file to .env
 
-API_KEY = "<paste-your-subscription-key>"
-REGION = "<paste-your-region>"
+API_KEY = <paste-your-subscription-key>
+REGION = <paste-your-region>
 
-INPUT_FILE_PATH = "<paste-your-input-file-path>"
-OUTPUT_FILE_PATH = "<paste-your-output-file-path>"
+INPUT_FILE_PATH = <paste-your-input-file-path>
+OUTPUT_FILE_PATH = <paste-your-output-file-path>
 
-# German:   "de-DE"
-# English:  "en-US"
-# French:   "fr-FR"
-# Spanish:  "es-ES"
-LANGUAGE = "<paste-your-recognition-language>"
+# German:   de-DE
+# English:  en-US
+# French:   fr-FR
+# Spanish:  es-ES
+LANGUAGE = <paste-your-recognition-language>
