@@ -1,4 +1,3 @@
-from curses import nonl
 import os
 import sys
 import time
