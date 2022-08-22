@@ -38,7 +38,7 @@ with this [Online Audio Converter](https://online-audio-converter.com/).
     source venv/bin/activate
 
     # Windows
-    ./venv/Scripts/activate
+    .\venv\Scripts\activate
     ```
 
 3. Install dependencies
